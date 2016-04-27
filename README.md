@@ -5,10 +5,10 @@
 
 ES6 JS/HTML binding library for creating dynamic web applications through HTML attribute binding. Made up of 4 libraries, puled in via a parent package that pulls in all required parts and configures as importable ES6 module 'RaziloBind'.
 
-* **[https://github.com/smiffy6969/razilobind-core](razilobind-core)** *(the main part)*, to traverse, detect and observe.
-* **[https://github.com/smiffy6969/razilobind-binder](razilobind-binder) [injectables]** *(the actual binders)*, binding object properties to elements to do various things.
-* **[https://github.com/smiffy6969/razilobind-resolver](razilobind-resolver) [injectables]** *(to parse attribute data)*, resolving attribute data to things like strings, numbers, objects, methods etc.
-* **[https://github.com/smiffy6969/razilobind-alterer](razilobind-alterer) [injectables]** *(to change things)*, altering resolved data to something else without affecting the model.
+* **[razilobind-core](https://github.com/smiffy6969/razilobind-core)** *(the main part)*, to traverse, detect and observe.
+* **[razilobind-binder](https://github.com/smiffy6969/razilobind-binder) [injectables]** *(the actual binders)*, binding object properties to elements to do various things.
+* **[razilobind-resolver](https://github.com/smiffy6969/razilobind-resolver) [injectables]** *(to parse attribute data)*, resolving attribute data to things like strings, numbers, objects, methods etc.
+* **[razilobind-alterer](https://github.com/smiffy6969/razilobind-alterer) [injectables]** *(to change things)*, altering resolved data to something else without affecting the model.
 
 This package **razilobind-core**, is the base functionality that binds, observes, traverses and detects, allowing injectables to be used on dom elements.
 
@@ -17,7 +17,7 @@ This package **razilobind-core**, is the base functionality that binds, observes
 
 Binders are a way we do something with an element, such as showing it, hiding it, looping it many times, changing attributes, taking inputs etc. Basically the many things you can do manually to an element in your application to make your application come alive. This is the basis of having a binding engine/tool/framework, we have stripped these out into standalone classes to be injected into razilobind to allow you to configure what you need (razilobind-core) or just choose all defaults (razilobind).
 
-Binders start with bind, then follow with the binder type (you can have a prefix too if you wish!). We then place resolvable data in the attribute, [https://github.com/smiffy6969/razilobind-resolver](see here for what types of resolvable data can be used), to be evaluated and used with the binder. Each binder can accept all [] or certain types ['boolean', 'object', 'phantom'] of resolved data. To use a binder we can...
+Binders start with bind, then follow with the binder type (you can have a prefix too if you wish!). We then place resolvable data in the attribute, [see here for what types of resolvable data can be used](https://github.com/smiffy6969/razilobind-resolver), to be evaluated and used with the binder. Each binder can accept all [] or certain types ['boolean', 'object', 'phantom'] of resolved data. To use a binder we can...
 
 
 ```html
