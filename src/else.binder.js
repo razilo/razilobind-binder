@@ -30,7 +30,7 @@ export default class ElseBinder extends Binder {
 		if (!!this.resolver.resolved)
 		{
 			// insert placeholder
-			this.placeholder = document.createComment('razilovm:if');
+			this.placeholder = document.createComment('razilobind:else');
 			this.node.parentNode.insertBefore(this.placeholder, this.node);
 			this.node.parentNode.removeChild(this.node);
 		}

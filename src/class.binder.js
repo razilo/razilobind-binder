@@ -38,7 +38,7 @@ export default class ClassBinder extends Binder {
 			classnames.push(classname); // add already present to stack
 			if (new RegExp('([^a-z0-9_-]{1}|^)' + classname + '([^a-z0-9_-]{1}|$)').test(this.node.className)) continue; // skip already present
 
-			this.node.className += classname + ' ';
+			this.node.className += ' ' + classname + ' ';
 			classnames.push(classname);
 		}
 

@@ -127,11 +127,11 @@ export default class ForBinder extends Binder {
 		// add placeholder and remove element from dom
 		if (!this.placeholder.start)
 		{
-			this.placeholder.end = document.createComment('razilovm:for:end');
+			this.placeholder.end = document.createComment('razilobind:for:end');
 			if (this.node.nextSibling === null) this.node.parentNode.appendChild(this.placeholder.end);
 			else this.node.parentNode.insertBefore(this.placeholder.end, this.node.nextSibling);
 
-			this.placeholder.start = document.createComment('razilovm:for:start');
+			this.placeholder.start = document.createComment('razilobind:for:start');
 			this.placeholder.end.parentNode.insertBefore(this.placeholder.start, this.placeholder.end);
 
 			this.node.parentNode.removeChild(this.node);
@@ -140,7 +140,7 @@ export default class ForBinder extends Binder {
 		if (this.children.length > 0)
 		{
 			// remove any current children
-			for (let i = 0; i < this.children.length; i++) this.children[i].node.parentNode.removeChild(this.children[i].node);
+			for (let i = 0; i < this.children.length; i++) this.children[i].parentNode.removeChild(this.children[i]);
 			this.children = [];
 		}
 
