@@ -126,6 +126,9 @@ Add class name/s to an element, do this as a one time bind or on a changable bas
 <span bind-class="foobar"></span>
 
 <!-- add method value -->
+<span bind-class="foobarMethod()"></span>
+
+<!-- add method value -->
 <span bind-class="whatever(something, 'another')"></span>
 
 <!-- add add/remove truthy -->
@@ -133,24 +136,6 @@ Add class name/s to an element, do this as a one time bind or on a changable bas
 
 <!-- add collection of classes -->
 <span bind-class="['test', foobar, whatever()]"></span>
-```
-
-
-### style *Add style to element*
-
-Add style to an element.
-
-**Accepts Resolvers** property, phantom, object, method
-
-```html
-<!-- basic add -->
-<span bind-style="{'display': 'none'}"></span>
-
-<!-- add property value -->
-<span bind-style="{'color': some.color}"></span>
-
-<!-- add method value -->
-<span bind-style="{'margin': someFunction()}"></span>
 ```
 
 
@@ -178,6 +163,24 @@ Add attribute/s to an element either as an attribute only based on truthy, or an
 
 <!-- add method value -->
 <span bind-attribute="{'something': someFunction()}"></span>
+```
+
+
+### style *Add style to element*
+
+Add style to an element.
+
+**Accepts Resolvers** property, phantom, object, method
+
+```html
+<!-- basic add -->
+<span bind-style="{'display': 'none'}"></span>
+
+<!-- add property value -->
+<span bind-style="{'color': some.color}"></span>
+
+<!-- add method value -->
+<span bind-style="{'margin': someFunction()}"></span>
 ```
 
 
