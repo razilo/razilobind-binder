@@ -74,7 +74,7 @@ export default class Binder {
 	 */
 	update(oldValue, path, action, key) {
 		// resolve data, bind to element from child class
-		this.resolver.resolve(this.model, this.name === 'event' ? true : false);
+		this.resolver.resolve(this.model, this.delayMethod === true ? true : false);
 		var newValue = this.resolver.resolved;
 
 		if (this.config) this.config.resolve(this.model);

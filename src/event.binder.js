@@ -17,6 +17,7 @@ export default class EventBinder extends Binder {
 		this.options = options;
 		this.traverser = traverser;
 		this.name = 'event';
+		this.delayMethod = true;
 		this.accepts = ['object'];
 		this.events = {};
 	}
