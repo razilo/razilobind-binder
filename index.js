@@ -12,6 +12,7 @@ import ElseBinder from './src/else.binder.js'
 import ValueBinder from './src/value.binder.js'
 import CheckedBinder from './src/checked.binder.js'
 import EventBinder from './src/event.binder.js'
+import InitBinder from './src/init.binder.js'
 
 export {
 	Binder as RaziloBindBinder,
@@ -27,5 +28,6 @@ export {
 	ElseBinder as RaziloBindElseBinder,
 	ValueBinder as RaziloBindValueBinder,
 	CheckedBinder as RaziloBindCheckedBinder,
-	EventBinder as RaziloBindEventBinder
+	EventBinder as RaziloBindEventBinder,
+	InitBinder as RaziloBindInitBinder
 }
