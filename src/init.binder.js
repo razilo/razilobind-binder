@@ -37,6 +37,7 @@ export default class InitBinder extends Binder {
 	 * @param event event The event that triggers the update
 	 */
 	listener(event) {
+		event.stopPropagation();
 		this.resolver.resolved.method.apply(this.model, this.resolver.resolved.values);
 	}
 }

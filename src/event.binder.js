@@ -53,6 +53,7 @@ export default class EventBinder extends Binder {
 	 * @param event event The event that triggers the update
 	 */
 	listener(event) {
+		event.stopPropagation();
 		let values = [event].concat(this.events[event.type].values);
 		this.events[event.type].method.apply(this.model, values);
 	}

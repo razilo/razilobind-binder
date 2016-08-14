@@ -33,7 +33,7 @@ Binders start with bind, then follow with the binder type (you can have a prefix
 </ul>
 
 <!-- one way binder (object) that gets re-evaluated like two way binding, by having an observed value inside it that changes -->
-<p bind-attribute="{'disabled': something}"></p>
+<p bind-attributes="{'disabled': something}"></p>
 
 <!-- one way binder (method) that gets re-evaluated like two way binding, by having an observed value inside it that changes -->
 <p bind-text="doSomething(foobar)"></p>
@@ -139,30 +139,105 @@ Add class name/s to an element, do this as a one time bind or on a changable bas
 ```
 
 
-### attribute *Add attribute to element*
+### attributes *Add attributes to element*
 
-Add attribute/s to an element either as an attribute only based on truthy, or an attribute with data set on it.
+Add attributes to an element either as an attributes only based on truthy, or an attributes with data set on it.
 
 **Accepts Resolvers** property, phantom, object, array, string, method
 
 ```html
 <!-- basic add attribute only -->
-<span bind-attribute="'disabled'"></span>
+<span bind-attributes="'disabled'"></span>
 
 <!-- basic add attribute from property -->
-<span bind-attribute="foo.bar['baz']"></span>
+<span bind-attributes="foo.bar['baz']"></span>
 
 <!-- basic add attribute with data -->
-<span bind-attribute="{'type': foobar, 'data-help': 'help me'}"></span>
+<span bind-attributes="{'type': foobar, 'data-help': 'help me'}"></span>
 
 <!-- add/remove with property as data, or if  -->
-<span bind-attribute="{'disabled': truthy}"></span>
+<span bind-attributes="{'disabled': truthy}"></span>
 
 <!-- add property value -->
-<span bind-attribute="{'something': some.color}"></span>
+<span bind-attributes="{'something': some.color}"></span>
 
 <!-- add method value -->
-<span bind-attribute="{'something': someFunction()}"></span>
+<span bind-attributes="{'something': someFunction()}"></span>
+```
+
+
+### disabled *Add disabled attribute to element*
+
+Add attribute to an element.
+
+**Accepts Resolvers** property, phantom, object, array, string, method
+
+```html
+<!-- basic add attribute only -->
+<span bind-disabled="true"></span>
+
+<!-- basic add attribute from property -->
+<span bind-disabled="foo.bar['baz']"></span>
+```
+
+
+### required *Add required attribute to element*
+
+Add attribute to an element.
+
+**Accepts Resolvers** property, phantom, object, array, string, method
+
+```html
+<!-- basic add attribute only -->
+<span bind-required="true"></span>
+
+<!-- basic add attribute from property -->
+<span bind-required="foo.bar['baz']"></span>
+```
+
+
+### selected *Add selected attribute to element*
+
+Add attribute to an element.
+
+**Accepts Resolvers** property, phantom, object, array, string, method
+
+```html
+<!-- basic add attribute only -->
+<span bind-selected="true"></span>
+
+<!-- basic add attribute from property -->
+<span bind-selected="foo.bar['baz']"></span>
+```
+
+
+### href *Add href attribute to element*
+
+Add src attribute to an element.
+
+**Accepts Resolvers** property, phantom, object, array, string, method
+
+```html
+<!-- basic add attribute only -->
+<a bind-href="'http://razilo.net'"></a>
+
+<!-- basic add attribute from property -->
+<a bind-href="foo.bar['baz']"></a>
+```
+
+
+### src *Add src attribute to element*
+
+Add src attribute to an element.
+
+**Accepts Resolvers** property, phantom, object, array, string, method
+
+```html
+<!-- basic add attribute only -->
+<img bind-src="'http://razilo.net.image.png'"/>
+
+<!-- basic add attribute from property -->
+<img bind-src="foo.bar['baz']"/>
 ```
 
 
@@ -242,6 +317,18 @@ Offers two way binding to form controls such as inputs, select boxes textareas e
 <select bind-value="some.value">
 	<option bind-for="list" bind-value="$key" bind-text="$value"></option>
 </select>
+```
+
+
+### model *Two way bind to element model*
+
+Offers two way binding to allow us to get data into things like custom web components. All raziloComponent web components are capable of excepting object data from element.model
+
+**Accepts Resolvers** property, phantom
+
+```html
+<!-- basic value binds -->
+<razilo-choose bind-model="an.object"></razilo-choose>
 ```
 
 

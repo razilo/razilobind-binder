@@ -49,6 +49,8 @@ export default class CheckedBinder extends Binder {
 	 * @param event event The event that triggers the update
 	 */
 	listener(event) {
+		event.stopPropagation();
+		
 		// last observer is the full observed path to resolver (others before can make up sub properties)
 		var path = this.resolver.observers[this.resolver.observers.length -1].split('.');
 		let end = path.pop();

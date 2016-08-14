@@ -29,9 +29,6 @@ export default class ValueBinder extends Binder {
 	 * @param object oldValue The old value of the observed object
 	 */
 	bind(oldValue, path) {
-		// catch duplicate fires from ui
-		if (this.node.value === this.resolver.resolved) return;
-
 		// set value
 		this.tag = this.node.tagName.toLowerCase();
 		this.type = this.node.getAttribute('type');
@@ -55,6 +52,8 @@ export default class ValueBinder extends Binder {
 	 * @param event event The event that triggers the update
 	 */
 	listener(event) {
+		event.stopPropagation();
+
 		// last observer is the full observed path to resolver (others before can make up sub properties)
 		var path = this.resolver.observers[this.resolver.observers.length -1].split('.');
 		let end = path.pop();
@@ -74,7 +73,7 @@ export default class ValueBinder extends Binder {
 		else
 		{
 			model[end] = this.node.value;
-			this.node.setAttribute('value', this.node.value);
+			this.node.setAttribute('value', typeof this.node.value === 'object' ? '[object]@' + new Date().getTime() : this.node.value);
 		}
 	}
 
@@ -93,8 +92,8 @@ export default class ValueBinder extends Binder {
 		}
 		else
 		{
+			this.node.setAttribute('value', typeof this.resolver.resolved === 'object' ? '[object]@' + new Date().getTime() : this.resolver.resolved);
 			this.node.value = this.resolver.resolved;
-			this.node.setAttribute('value', this.node.value);
 		}
 	}
 
@@ -103,8 +102,8 @@ export default class ValueBinder extends Binder {
 	 * Get the type of event we want to listen on
 	 */
 	eventType() {
-		let name = 'input';
-		if (this.tag === 'select' || this.type === 'file') name = 'change';
+		let name = 'change';
+		if (this.tag === 'input') name = 'input';
 
 		return name;
 	}
