@@ -119,8 +119,8 @@ export default class ForBinder extends Binder {
 		if (typeof this.resolver.resolved !== 'object') return;
 
 		// grab any config data
-		var phantomKey = this.config && this.config.resolved.key ? this.config.resolved.key : '';
-		var phantomValue = this.config && this.config.resolved.value ? this.config.resolved.value : '';
+		var phantomKey = this.config && this.config.resolved.key ? (this.config.resolved.key.indexOf('$') !== 0 ? '$' + this.config.resolved.key : this.config.resolved.key) : '$key';
+		var phantomValue = this.config && this.config.resolved.value ? (this.config.resolved.value.indexOf('$') !== 0 ? '$' + this.config.resolved.value : this.config.resolved.value) : '$value';
 		var order = this.order && this.order.resolved ? this.order.resolved : undefined;
 		var filter = this.filter && this.filter.resolved ? this.filter.resolved : undefined;
 
