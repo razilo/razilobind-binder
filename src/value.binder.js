@@ -34,7 +34,7 @@ export default class ValueBinder extends Binder {
 		this.type = this.node.getAttribute('type');
 		if (this.type != 'file')
 		{
-			if (this.tag === 'select') setTimeout(this.setValue.bind(this), 1);
+			if (this.tag === 'select') setTimeout(this.setValue.bind(this), 10);
 			else this.setValue();
 		}
 
