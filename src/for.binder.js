@@ -116,7 +116,8 @@ export default class ForBinder extends Binder {
 	 * @param object oldValue The old value of the observed object
 	 */
 	bind(oldValue, path, action, objectKey) {
-		if (typeof this.resolver.resolved !== 'object') return;
+		if (typeof this.resolver.resolved !== 'object') return; // do not re-draw for non objects
+		if (action == 'update' && typeof oldValue !== 'undefined' && typeof oldValue !== 'object') return; // do not re-draw on litaral changes (as they do not affect loop)
 
 		// grab any config data
 		var phantomKey = this.config && this.config.resolved.key ? (this.config.resolved.key.indexOf('$') !== 0 ? '$' + this.config.resolved.key : this.config.resolved.key) : '$key';
