@@ -138,17 +138,9 @@ export default class ForBinder extends Binder {
 			this.node.parentNode.removeChild(this.node);
 		}
 
-		if (this.children.length > 0)
-		{
-			// remove any current children
-			for (let i = 0; i < this.children.length; i++) this.children[i].parentNode.removeChild(this.children[i]);
-			this.children = [];
-		}
-
 		// order and/or filter the resolved data, dont allow over length of data
 		var orderedFiltered = this.orderFilter(this.resolver.resolved, order, filter);
 
-		// limit and offset if either set
 		if (this.offset || this.limit)
 		{
 			let offset = this.offset && this.offset.resolved ? parseInt(this.offset.resolved) : 0;
@@ -161,6 +153,8 @@ export default class ForBinder extends Binder {
 			if (orderedFiltered.map) orderedFiltered.map = orderedFiltered.map.splice(nOffset, nLimit);
 		}
 
+		var newChildren = [];
+		var c = 0;
 		for (var key in orderedFiltered.resolved)
 		{
 			let newNode = this.node.cloneNode(true);
@@ -179,14 +173,53 @@ export default class ForBinder extends Binder {
 				'valueName': phantomValue
 			};
 
-			this.children.push(newNode);
+			newChildren.push(newNode);
 		}
 
-		// add children
-		for (var i = 0; i < this.children.length; i++)
-		{
-			this.placeholder.end.parentNode.insertBefore(this.children[i], this.placeholder.end);
-			if (path) this.traverser.traverse(this.children[i], this.model);
+		// no children, clear it all out
+		if (newChildren.length < 1) {
+			for (let i = 0; i < this.children.length; i++) this.children[i].parentNode.removeChild(this.children[i]);
+			this.children = [];
+		}
+
+		if (this.children.length > 0) {
+			// update children, lets only alter them if they change
+			for (var i = 0; i < newChildren.length; i++)
+			{
+				// same, skip
+				if (this.children[i] && JSON.stringify(this.children[i].phantom) == JSON.stringify(newChildren[i].phantom)) continue;
+
+				if (!!this.children[i] && !!this.children[i].parentNode) {
+					this.children[i].parentNode.insertBefore(newChildren[i], this.children[i]);
+					this.children[i].parentNode.removeChild(this.children[i]);
+				} else this.placeholder.end.parentNode.insertBefore(newChildren[i], this.placeholder.end);
+
+				this.children.splice(i, 1, newChildren[i]);
+				if (path) this.traverser.traverse(newChildren[i], this.model);
+			}
+
+			// clear up any extras
+			for (var i = 0; i < this.children.length; i++) {
+				if (i < newChildren.length) continue;
+
+				if (this.children[i] && this.children[i].parentNode) {
+					this.children[i].parentNode.removeChild(this.children[i]);
+				}
+			}
+
+			// clear up cache (do this seperately or splice screws up)
+			for (var i = 0; i < this.children.length; i++) {
+				if (i < newChildren.length) continue;
+				this.children.splice(i, 1);
+			}
+		} else {
+			// new children, just add them as normal
+			this.children = newChildren;
+			for (var i = 0; i < this.children.length; i++)
+			{
+				this.placeholder.end.parentNode.insertBefore(this.children[i], this.placeholder.end);
+				if (path) this.traverser.traverse(this.children[i], this.model);
+			}
 		}
 	}
 

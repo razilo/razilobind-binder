@@ -86,6 +86,8 @@ export default class Binder {
 
 		this.bind(oldValue, path, action, key);
 
+		if (!newValue) return;
+
 		// garbage collection on observables map which is only thing holding ref to binder (so binder will be released naturally)
 		if (action === 'object-remove') delete this.traverser.observables[path + '.' + key];
 		else if (action === 'array-remove')	for (var i = newValue.length -1; i < oldValue; i++) delete this.traverser.observables[path + '.' + i];
