@@ -17,6 +17,10 @@ import ElseBinder from './src/else.binder.js'
 import ValueBinder from './src/value.binder.js'
 import CheckedBinder from './src/checked.binder.js'
 import EventBinder from './src/event.binder.js'
+import ClickBinder from './src/click.binder.js'
+import InputBinder from './src/input.binder.js'
+import HoverBinder from './src/hover.binder.js'
+import ChangeBinder from './src/change.binder.js'
 import InitBinder from './src/init.binder.js'
 import ModelBinder from './src/model.binder.js'
 
@@ -40,6 +44,10 @@ export {
 	ValueBinder as RaziloBindValueBinder,
 	CheckedBinder as RaziloBindCheckedBinder,
 	EventBinder as RaziloBindEventBinder,
+	ClickBinder as RaziloBindClickBinder,
+	InputBinder as RaziloBindInputBinder,
+	HoverBinder as RaziloBindHoverBinder,
+	ChangeBinder as RaziloBindChangeBinder,
 	InitBinder as RaziloBindInitBinder,
 	ModelBinder as RaziloBindModelBinder
 }

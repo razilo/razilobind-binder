@@ -1,9 +1,8 @@
 import Binder from './binder.js'
 
 /**
- * Init Binder
- * Bind a method to initialization of element. A starting method good for things like collecting
- * data on start of your app, or preloading method.
+ * Click Binder
+ * Bind methods to element events
  *
  * Inherits
  *
@@ -12,12 +11,12 @@ import Binder from './binder.js'
  * method: build(model) { return binder }
  * method: update(newValue, oldValue) { }
  */
-export default class InitBinder extends Binder {
+export default class ClickBinder extends Binder {
 	constructor(options, traverser) {
 		super();
 		this.options = options;
 		this.traverser = traverser;
-		this.name = 'init';
+		this.name = 'click';
 		this.delayMethod = true;
 		this.accepts = ['method'];
 		this.event;
@@ -32,8 +31,8 @@ export default class InitBinder extends Binder {
 		if (typeof this.resolver.resolved.method !== 'function') return;
 
 		if (!this.event) {
-			this.event = 'DOMContentLoaded';
-			this.node.addEventListener('DOMContentLoaded', this.listener.bind(this), false);
+			this.event = 'click';
+			this.node.addEventListener('click', this.listener.bind(this), false);
 		}
 	}
 
