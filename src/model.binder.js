@@ -28,7 +28,7 @@ export default class ModelBinder extends Binder {
 	 */
 	bind(oldValue, path) {
 		// set value
-		this.node.setAttribute('model', typeof this.resolver.resolved === 'object' ? '[object]@' + new Date().getTime() : this.resolver.resolved);
 		this.node.model = this.resolver.resolved;
+		this.node.setAttribute('model', typeof this.resolver.resolved === 'object' ? '[object]@' + new Date().getTime() : this.resolver.resolved);
 	}
 }

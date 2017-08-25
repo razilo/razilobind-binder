@@ -1,5 +1,5 @@
 {
-  "version": "1.2.0",
+  "version": "1.2.1",
   "name": "razilobind-binder",
   "description": "Binders for ES6 JS/HTML binding library for creating cynamic web applications through HTML attribtue binding",
   "homepage": "http://bind.razilo.net",
